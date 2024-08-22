@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Neto Virtual</title>
+    <style>
+        * {
+            box-sizing: border-box; /* Garante que o padding seja incluído na largura total */
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #8B0000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 400px; /* Aumentei a largura máxima */
+            padding: 50px; /* Aumentei o padding para mais espaço interno */
+            background-color: #8B0000;
+            border-radius: 15px; /* Borda mais arredondada */
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Sombra mais suave e proeminente */
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Garante que os elementos dentro estejam alinhados no centro */
+        }
+
+        .login-container img {
+            width: 70%; /* Aumentei a largura da imagem */
+            margin-bottom: 20px;
+        }
+
+        .login-container input[type="text"],
+        .login-container input[type="password"] {
+            width: calc(100% - 40px); /* Aumentei a largura */
+            padding: 15px; /* Aumentei o padding para inputs maiores */
+            margin: 15px 0; /* Aumentei a margem entre os inputs */
+            border: none;
+            border-radius: 25px; /* Caixas de texto mais arredondadas */
+            font-size: 1.2em; /* Aumentei o tamanho da fonte */
+            text-align: center;
+            background-color: #FFF; /* Fundo branco */
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra interna para profundidade */
+        }
+
+        .login-container input[type="submit"] {
+            width: calc(100% - 40px); /* Aumentei a largura */
+            padding: 15px; /* Aumentei o padding para um botão maior */
+            background-color: white;
+            border: none;
+            border-radius: 25px; /* Botão arredondado */
+            font-size: 1.3em; /* Aumentei o tamanho da fonte */
+            color: #8B0000;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 25px; /* Aumentei a margem superior */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra para o botão */
+            transition: background-color 0.3s ease;
+        }
+
+        .login-container input[type="submit"]:hover {
+            background-color: #ffdddd;
+        }
+
+        .login-container p {
+            color: white;
+            margin: 20px 0;
+        }
+
+        .login-container a {
+            color: white;
+            text-decoration: none;
+        }
+
+        #error-message {
+            color: red;
+            display: none;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <img src="C:\Users\lulusinha\OneDrive\onetovirtual\logo.png"alt="Logo Neto Virtual">
+        <form id="login-form">
+            <input type="text" id="username" placeholder="Nome" required>
+            <input type="password" id="password" placeholder="Senha" required>
+            <p><a href="criar_conta.html">não tem conta?</a></p>
+            <input type="submit" value="Entrar">
+        </form>
+        <p id="error-message">Senha incorreta. Tente novamente.</p>
+    </div>
+
+    <script>
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+
+            var correctPassword = '12345'; // Defina a senha correta aqui
+            var enteredPassword = document.getElementById('password').value;
+
+            if (enteredPassword === correctPassword) {
+                window.location.href = 'chat.html'; 
+            } else {
+                document.getElementById('error-message').style.display = 'block'; 
+            }
+        });
+    </script>
+</body>
+</html>

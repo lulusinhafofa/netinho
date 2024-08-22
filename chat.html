@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neto Virtual - Assistência</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #8B0000;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .chat-container {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .chat-header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            background-color: #501a1a;
+            position: relative;
+        }
+
+        .chat-header img {
+            height: 130px;
+        }
+
+        .settings-button {
+            width: 35px;
+            height: 35px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            position: absolute;
+            right: 15px;
+            top: 15px;
+        }
+
+        .settings-button img {
+            height: 105%;
+        }
+
+        .chat-box {
+            padding: 15px;
+            height: 500px;
+            overflow-y: auto;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            background-color: #501a1a;
+        }
+
+        .message {
+            padding: 10px 15px;
+            border-radius: 20px;
+            margin-bottom: 10px;
+            max-width: 75%;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .user-message {
+            background-color: #dcf8c6;
+            align-self: flex-end;
+            color: #000000;
+        }
+
+        .bot-message {
+            background-color: #f0f0f0;
+            align-self: flex-start;
+            color: #000000;
+        }
+
+        .input-box {
+            display: flex;
+            padding: 10px;
+            background-color: hsl(0, 51%, 21%);
+            border-top: 1px solid #501a1a;
+        }
+
+        .input-box input {
+            width: calc(100% - 40px);
+            padding: 10px 15px;
+            border: 1px solid #dddddd;
+            border-radius: 20px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .input-box button {
+            width: 40px;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            <img src="C:\Users\lulusinha\OneDrive\onetovirtual\logo.png" alt="Logo Neto Virtual">
+            <button class="settings-button" onclick="window.location.href='config.html'">
+                <img src="C:\Users\lulusinha\OneDrive\onetovirtual\config.png" alt="Configurações">
+            </button>            
+            
+        </div>
+        <div class="chat-box" id="chat-box">
+            
+        </div>
+        <div class="input-box">
+            <input type="text" id="user-input" placeholder="Digite sua mensagem aqui...">
+            <button onclick="sendMessage()">▶</button>
+        </div>
+    </div>
+
+    <script>
+        function sendMessage() {
+            var userInput = document.getElementById("user-input").value;
+            if (userInput.trim() !== "") {
+                displayMessage(userInput, "user-message");
+
+                setTimeout(function() {
+                    var botResponse = getBotResponse(userInput);
+                    displayMessage(botResponse, "bot-message");
+                }, 1000);
+
+                document.getElementById("user-input").value = "";
+            }
+        }
+
+        function displayMessage(message, className) {
+            var chatBox = document.getElementById("chat-box");
+            var messageElement = document.createElement("div");
+            messageElement.className = "message " + className;
+            messageElement.textContent = message;
+            chatBox.appendChild(messageElement);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        function getBotResponse(input) {
+            if (input.toLowerCase().includes("como mudar foto de perfil do zap")) {
+                return "Para mudar a foto de perfil no WhatsApp:\n1. Abra o WhatsApp e toque nos três pontinhos no canto superior direito.\n2. Selecione 'Configurações'.\n3. Toque na sua foto de perfil.\n4. Escolha 'Alterar foto'.\n5. Selecione uma nova foto da galeria ou tire uma nova.\n6. Confirme para salvar a nova foto.";
+            } else if (input.toLowerCase().includes("olá")) {
+                return "Olá! Como posso te ajudar?";
+            } else {
+                return "Desculpe, não entendi. Pode repetir?";
+            }
+        }
+    </script>
+</body>
+</html>
